@@ -1,0 +1,86 @@
+{% extends "base/base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% import "bootstrap/fixes.html" as fixes %}
+{% import "bootstrap/utils.html" as util %}
+
+{% block page_content %} 
+<div>
+<table class="table table-hover table-bordered">
+   <caption><B>不合格油品质量数据</B></caption>
+   <thead>
+      <tr>
+         <th>单位</th>
+         <th>购买时间</th>
+         <th>油品牌号</th>
+         <th>数量（吨）</th>
+         <th>到货地点</th>
+         <th>油品来源</th>
+         <th>不合格项目</th>
+         <th>处理方式</th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for line in results %}
+        <tr>
+          <td>{{ line.company }}</td>
+          <td>{{ line.time_purchase }}</td>
+          <td>{{ line.fuel_kind }}</td>
+          <td>{{ line.quantity }}</td>
+          <td>{{ line.depot }}</td>
+          <td>{{ line.which_no }}</td>
+          <td>{{ line.process }}</td>
+          <td>{{ line.elseComment }}</td>
+         </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+<div>
+<table class="table table-hover table-bordered">
+   <caption><B>账户及密码</B></caption>
+   <thead>
+      <tr>
+         <th>账户</th>
+         <th>密码</th>
+         <th>邮箱</th>
+         <th>权限</th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for line in users %}
+        <tr>
+          <td>{{ line.username }}</td>
+          <td>{{ line.password_hash }}</td>
+          <td>{{ line.email }}</td>
+          <td>{{ line.role_id }}</td>
+         </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+<div>
+<table class="table table-hover table-bordered">
+   <caption><B>角色</B></caption>
+   <thead>
+      <tr>
+         <th>id</th>
+         <th>name</th>
+         <th>default</th>
+         <th>permissions</th>
+      </tr>
+   </thead>
+   <tbody>
+      {% for line in roles %}
+        <tr>
+          <td>{{ line.id }}</td>
+          <td>{{ line.name }}</td>
+          <td>{{ line.default }}</td>
+          <td>{{ line.permissions }}</td>
+
+         </tr>
+      {% endfor %}
+    </tbody>
+</table>
+</div>
+</body>
+{% endblock %} 
